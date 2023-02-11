@@ -1,0 +1,25 @@
+import sys
+
+
+n = int(input())
+
+paper = []
+for i in range(n):
+    paper.append(list(map(int,sys.stdin.readline().split())))
+
+#012 345 678
+#paper[col[row]]
+def func(paper):
+    for i in range(0,n-1):
+        for j in range(0,n-2):
+            if paper[i][j]!=paper[i][j+1]:
+                func(paper[0:n//3][0:3])
+                func(paper[n//3:n*2//3][n//3:n*2//3])
+                func(paper[n*2//3:-1])
+        
+print(paper[0][8])
+print(paper[8][0])
+print(paper[6:9][0:3])
+
+
+#func()
