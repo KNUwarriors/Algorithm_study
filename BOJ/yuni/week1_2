@@ -1,0 +1,29 @@
+import sys
+input = sys.stdin.readline
+
+n = int(input())
+
+paper = list(list(map(int, list(input().strip()))) for _ in range(n))
+
+
+def quad(row, col, num):
+    k = paper[row][col]
+    for i in range(row, row+num):
+        for j in range(col, col+num):
+            if paper[i][j] != k:
+                print("(",end="")
+                quad(row, col, num//2)
+
+                quad(row, col+num//2, num//2)
+                
+                quad(row+num//2, col, num//2)
+                
+                quad(row+num//2, col+num//2, num//2)
+                
+                print(")",end="")
+                return
+    print(k, end="")
+
+
+
+quad(0, 0, n)
